@@ -10,11 +10,35 @@ public class Resistor extends PcbComponent implements Reservable {
 	public int 		tolerance;
 	public String 	enclosureType; 
 	
-	public Resistor(){
-		Scanner 	scanner = new Scanner(System.in);
+	private int getPositiveValue (Scanner sc){
+		int tempLengh		= 0;
 		
+		while(tempLengh == 0){
+			if(sc.hasNextInt()){
+				tempLengh = sc.nextInt();			
+				if(tempLengh  < 0){
+					System.out.printf("\nСледует ввести положительное значение  или 0: ");
+					tempLengh = 0;
+				}else{
+					break;
+				}
+					
+			}else if(sc.hasNextLine()){
+				sc.next();									//очищаем строку ввода
+				System.out.print("\nСледует ввести число а не строку\n" +
+								 "Попробуйте еще раз: ");
+			}
+				
+		}
+		
+		return tempLengh;
+	}
+	
+	
+	public Resistor(Scanner scanner){		
 		this.type 			= "resistor";	
 		this.refdesPrefix 	= "R";
+
 		
 		System.out.println("Enter the full name of PCB component:");
 		if(scanner.hasNextLine()){
@@ -22,16 +46,12 @@ public class Resistor extends PcbComponent implements Reservable {
 		}
 		
 		System.out.printf("Enter the resistance value (in Ohm): ");
-		if(scanner.hasNextInt()){
-			this.resistance = scanner.nextInt();				
-		}
+		this.resistance = getPositiveValue(scanner);
 		
 		System.out.printf("Enter the tolerance value: ");
-		if(scanner.hasNextInt()){
-			this.tolerance = scanner.nextInt();				
-		}
-		
-		
+		this.tolerance = getPositiveValue(scanner);		
+	
+	
 		System.out.println("Enter the name of the manufacturer:");
 		if(scanner.hasNextLine()){
 			this.producer = scanner.next();	
@@ -43,21 +63,15 @@ public class Resistor extends PcbComponent implements Reservable {
 		}
 		
 		System.out.printf("Enter the number of " + this.type +"s  :");
-		if(scanner.hasNextInt()){
-			this.quantityInStock = scanner.nextInt();				
-		}
+		this.quantityInStock = getPositiveValue(scanner);			
+
 		
 		System.out.printf("Enter the box number: ");
-		if(scanner.hasNextInt()){
-			this.boxNumber = scanner.nextInt();				
-		}
+		this.boxNumber =getPositiveValue(scanner);		
+	
 		
 		System.out.printf("Enter the cell number: ");
-		if(scanner.hasNextInt()){
-			this.cellNumber = scanner.nextInt();				
-		}
-		
-		scanner.close();
+		this.cellNumber = getPositiveValue(scanner);
 	}
 	
 	@Override
