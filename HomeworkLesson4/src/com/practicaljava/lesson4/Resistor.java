@@ -11,47 +11,53 @@ public class Resistor extends PcbComponent implements Reservable {
 	public String 	enclosureType; 
 	
 	public Resistor(){
-		super(type,refdesPrefix,producer,quantityInStock,boxNumber,cellNumber);
-		
-		String 		type;
-		String 		refdesPrefix;
-		String 		producer;
-		int 		quantityInStock;
-		int 		boxNumber;
-		int 		cellNumber;
-		
-		
 		Scanner 	scanner = new Scanner(System.in);
 		
-		System.out.println("Enter the type of PCB component:");
+		this.type 			= "resistor";	
+		this.refdesPrefix 	= "R";
+		
+		System.out.println("Enter the full name of PCB component:");
 		if(scanner.hasNextLine()){
-			type = scanner.next();	
+			this.name = scanner.next();	
 		}
 		
-		System.out.println("Enter the prefix of PCB component:");
-		if(scanner.hasNextLine()){
-			refdesPrefix = scanner.next();	
+		System.out.printf("Enter the resistance value (in Ohm): ");
+		if(scanner.hasNextInt()){
+			this.resistance = scanner.nextInt();				
 		}
+		
+		System.out.printf("Enter the tolerance value: ");
+		if(scanner.hasNextInt()){
+			this.tolerance = scanner.nextInt();				
+		}
+		
 		
 		System.out.println("Enter the name of the manufacturer:");
 		if(scanner.hasNextLine()){
-			producer = scanner.next();	
+			this.producer = scanner.next();	
 		}
 		
-		System.out.printf("Enter the number of PCB componen: ");
+		System.out.println("Enter the enclosure type of " + this.type +" :");
+		if(scanner.hasNextLine()){
+			this.enclosureType = scanner.next();	
+		}
+		
+		System.out.printf("Enter the number of " + this.type +"s  :");
 		if(scanner.hasNextInt()){
-			quantityInStock = scanner.nextInt();				
+			this.quantityInStock = scanner.nextInt();				
 		}
 		
 		System.out.printf("Enter the box number: ");
 		if(scanner.hasNextInt()){
-			boxNumber = scanner.nextInt();				
+			this.boxNumber = scanner.nextInt();				
 		}
 		
 		System.out.printf("Enter the cell number: ");
 		if(scanner.hasNextInt()){
-			cellNumber = scanner.nextInt();				
+			this.cellNumber = scanner.nextInt();				
 		}
+		
+		scanner.close();
 	}
 	
 	@Override
