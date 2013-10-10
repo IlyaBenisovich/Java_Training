@@ -4,76 +4,75 @@ import java.util.Scanner;
 
 public class Resistor extends PcbComponent implements Reservable {
 
-	static final int MAX_NUMBER_OF_RESISTOR_IN_CELL = 100;
+	private static final int MAX_NUMBER_OF_RESISTOR_IN_CELL = 100;
 	
-	public int 		resistance;
-	public int 		tolerance;
-	public String 	enclosureType; 
+	public int 				resistance;
+	public int 				tolerance;
+
+	public static int 		counter = 0;
 	
-	private int getPositiveValue (Scanner sc){
-		int tempLengh		= 0;
+
+	
 		
-		while(tempLengh == 0){
-			if(sc.hasNextInt()){
-				tempLengh = sc.nextInt();			
-				if(tempLengh  < 0){
-					System.out.printf("\nСледует ввести положительное значение  или 0: ");
-					tempLengh = 0;
-				}else{
-					break;
-				}
-					
-			}else if(sc.hasNextLine()){
-				sc.next();									//очищаем строку ввода
-				System.out.print("\nСледует ввести число а не строку\n" +
-								 "Попробуйте еще раз: ");
+	private String convertResistancetoString(){
+		StringBuffer retStr = new StringBuffer(10);
+		int 		 mega 	=  resistance/1000000;
+		int 		 kilo	= (resistance - (mega * 1000000))/1000;
+		int 		 units  =  resistance - (mega * 1000000) - (kilo * 1000);
+		
+		if(mega > 0){
+			retStr.append(mega);
+			if(kilo > 0){
+				retStr.append(",");
+				retStr.append(kilo/100);	
 			}
-				
-		}
+			retStr.append(" MOhm");
+		 }else if(kilo > 0){
+			retStr.append(kilo);
+			if(units > 0){
+					retStr.append(",");
+					retStr.append(units/100);
+			}
+			retStr.append(" КOhm");
+		 }else{
+			 retStr.append(units);
+			 retStr.append(" Ohm");
+		 }
 		
-		return tempLengh;
+		 return retStr.toString();
 	}
 	
 	
-	public Resistor(Scanner scanner){		
-		this.type 			= "resistor";	
-		this.refdesPrefix 	= "R";
-
-		
-		System.out.println("Enter the full name of PCB component:");
-		if(scanner.hasNextLine()){
-			this.name = scanner.next();	
-		}
-		
-		System.out.printf("Enter the resistance value (in Ohm): ");
-		this.resistance = getPositiveValue(scanner);
-		
-		System.out.printf("Enter the tolerance value: ");
-		this.tolerance = getPositiveValue(scanner);		
 	
-	
-		System.out.println("Enter the name of the manufacturer:");
-		if(scanner.hasNextLine()){
-			this.producer = scanner.next();	
+	public Resistor(Scanner scanner, boolean overrideQuestions){
+		super(scanner, overrideQuestions);
+		
+		Resistor.counter++;
+		type 			= "resistor";	
+		refdesPrefix	= "R";
+		
+		if(!overrideQuestions){
+			System.out.printf("Enter the resistance value (in Ohm): ");
 		}
+		resistance = getPositiveValue(scanner);
 		
-		System.out.println("Enter the enclosure type of " + this.type +" :");
-		if(scanner.hasNextLine()){
-			this.enclosureType = scanner.next();	
+		if(!overrideQuestions){
+			System.out.printf("Enter the tolerance value (in %%): ");
 		}
-		
-		System.out.printf("Enter the number of " + this.type +"s  :");
-		this.quantityInStock = getPositiveValue(scanner);			
-
-		
-		System.out.printf("Enter the box number: ");
-		this.boxNumber =getPositiveValue(scanner);		
-	
-		
-		System.out.printf("Enter the cell number: ");
-		this.cellNumber = getPositiveValue(scanner);
+		tolerance = getPositiveValue(scanner);		
 	}
 	
+	
+	public String toString (){
+		return (
+				name + " " + type + " " + enclosureType + " " + 
+	            convertResistancetoString() + " " + "+-" + tolerance + "%   " +
+				"quantity in stock = " + quantityInStock + "  (box #" + 	
+	            boxNumber + ", cell #" + cellNumber + ")"
+	            );
+	}
+	
+
 	@Override
 	public int bookItself(int amount) {
 		// TODO Auto-generated method stub
