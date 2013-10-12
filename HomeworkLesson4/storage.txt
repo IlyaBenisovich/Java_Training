@@ -1,2 +1,6 @@
 R RC0805J Yageo 0805 56 2 34 1200 2 
-R RC0805J Yageo 0805 12 2 23 1000000 2
+R RK1233N1-B50K Song_Huei 12mm_Metal_Shaft_Rotary_Potentiometers 12 2 23 50000 2
+C K71-7 Polycond 40x17x30mm_radial 12 1 12 100000 10
+C Alluminium_jamicon_TK Jamicon 10x16mm_radial 25 1 13 1000000000 20  
+L LQH32T-R10 Hitano  3.2x2.4_SMD 33 3 6 100 20 250 700
+L LNQ32T-271 Hitano  3.2x2.4_SMD 17 3 9 270000 5 12500 65

@@ -2,7 +2,7 @@ package com.practicaljava.lesson4;
 
 import java.util.Scanner;
 
-public class PcbComponent {
+public class PcbComponent  implements Reservable {
 		static int quantiyDifferentTypes; 
 		
 		protected String 		name;
@@ -23,7 +23,7 @@ public class PcbComponent {
 				if(sc.hasNextInt()){
 					tempLengh = sc.nextInt();			
 					if(tempLengh  < 0){
-						System.out.printf("\nСледует ввести положительное значение  или 0: ");
+						System.out.printf("\nYou must enter a positive value or 0: ");
 						tempLengh = 0;
 					}else{
 						break;
@@ -31,8 +31,8 @@ public class PcbComponent {
 						
 				}else if(sc.hasNextLine()){
 					sc.next();									//очищаем строку ввода
-					System.out.print("\nСледует ввести число а не строку\n" +
-									 "Попробуйте еще раз: ");
+					System.out.print("\nYou must enter the number, not a string\n" +
+									 "Try again: ");
 				}
 					
 			}
@@ -86,6 +86,10 @@ public class PcbComponent {
 				System.out.printf("Enter the cell number: ");
 			}
 			cellNumber = getPositiveValue(scanner);
+		}
+		
+		public Reservation_result bookItself(int amount) {
+			return null;
 		}
 		
 }

@@ -2,7 +2,7 @@ package com.practicaljava.lesson4;
 
 import java.util.Scanner;
 
-public class Resistor extends PcbComponent implements Reservable {
+public class Resistor extends PcbComponent {
 
 	private static final int MAX_NUMBER_OF_RESISTOR_IN_CELL = 100;
 	
@@ -14,7 +14,7 @@ public class Resistor extends PcbComponent implements Reservable {
 
 	
 		
-	private String convertResistancetoString(){
+	private String convertResistanceToString(){
 		StringBuffer retStr = new StringBuffer(10);
 		int 		 mega 	=  resistance/1000000;
 		int 		 kilo	= (resistance - (mega * 1000000))/1000;
@@ -66,7 +66,7 @@ public class Resistor extends PcbComponent implements Reservable {
 	public String toString (){
 		return (
 				name + " " + type + " " + enclosureType + " " + 
-	            convertResistancetoString() + " " + "+-" + tolerance + "%   " +
+	            convertResistanceToString() + " " + "+-" + tolerance + "%   " +
 				"quantity in stock = " + quantityInStock + "  (box #" + 	
 	            boxNumber + ", cell #" + cellNumber + ")"
 	            );
@@ -74,23 +74,33 @@ public class Resistor extends PcbComponent implements Reservable {
 	
 
 	@Override
-	public int bookItself(int amount) {
+	public Reservation_result bookItself(int amount) {
 		// TODO Auto-generated method stub
-		int quantity = this.quantityInStock + amount;
+		
+		if(quantityInStock >= MAX_NUMBER_OF_RESISTOR_IN_CELL){
+			System.out.println("Not ordered. the cell is full.  Now there are "+
+					quantityInStock +" resistors");
+			return Reservation_result.NOT_TO_BOOK_THE_CELL_IS_FULL;
+		}
+					
+		int quantity = quantityInStock + amount;
 		
 		if(quantity > MAX_NUMBER_OF_RESISTOR_IN_CELL)	
 		{
-			System.out.println("In stock not need as many (" + quantity +
+			System.out.print("In stock not need as many (" + quantity +
 					           ") resistors.");
-			System.out.println("The maximum number of resistors s cell =" + 
+			System.out.print(" The maximum number of resistors in the cell =" + 
 					MAX_NUMBER_OF_RESISTOR_IN_CELL + ", now there are "+
-					this.quantityInStock +" resistors");
-			return (MAX_NUMBER_OF_RESISTOR_IN_CELL - this.quantityInStock);
-		}
-		else
-		{
-			this.quantityInStock += amount;
-			return 0;
+					quantityInStock +" resistors");
+			System.out.println(" It was ordered " + (MAX_NUMBER_OF_RESISTOR_IN_CELL - 
+					quantityInStock) + " " + name + "s " + "at the stock");
+			quantityInStock = MAX_NUMBER_OF_RESISTOR_IN_CELL;
+			return Reservation_result.ORDERED_PARTIALLY;
+		}else{
+			System.out.println("It was ordered " + amount + " " + 
+					name + "s " + "at the stock");
+			quantityInStock += amount;
+			return Reservation_result.ORDERED_FULLY;
 		}
 	}
 
