@@ -1,0 +1,9 @@
+bmxbike 	bmxbike.gif 		1,7 0,59 0,95	26 5 200,0
+citybike 	citybike.gif		1,7 0,6  1,05	26 5 150,0
+crossbike	crossbike.gif		1,8 0,6  1,15	28 4 175,0
+cruiserbike	cruiserbike.gif		1,9 0,75 1,15	28 3 350,0
+foldingbike	foldingbike.gif		1,6 0,6  1,10	20 5 150,0
+kidsbike	kidsbike.gif		1,5 0,5  0,85	20 6 125,0
+roadbike	roadbike.gif		1,7 0,6  1,0	26 5 200,0
+touringbike touringbike.gif		1,8 0,5  1,1	30 4 400,0
+trekbike	trekbike.gif		1,8 0,6  1,15	28 4 600,0
