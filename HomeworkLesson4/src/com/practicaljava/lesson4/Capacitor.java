@@ -2,7 +2,7 @@ package com.practicaljava.lesson4;
 
 import java.util.Scanner;
 
-	public class Capacitor extends PcbComponent {
+	public class Capacitor extends PcbComponent implements Reservable{
 		private static final int MAX_NUMBER_OF_CAPACITORS_IN_CELL = 50;
 	
 		public long 			capacistance;

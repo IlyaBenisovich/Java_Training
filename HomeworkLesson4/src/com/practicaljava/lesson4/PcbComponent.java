@@ -2,7 +2,7 @@ package com.practicaljava.lesson4;
 
 import java.util.Scanner;
 
-public class PcbComponent  implements Reservable {
+public class PcbComponent /*implements Reservable*/ {
 		static int quantiyDifferentTypes; 
 		
 		protected String 		name;
@@ -88,8 +88,8 @@ public class PcbComponent  implements Reservable {
 			cellNumber = getPositiveValue(scanner);
 		}
 		
-		public Reservation_result bookItself(int amount) {
-			return null;
-		}
+//		public Reservation_result bookItself(int amount) {
+//			return null;
+//		}
 		
 }

@@ -55,9 +55,10 @@ public class PcbComponent_storage {
 			
 			System.out.println("I order book of " + args[0] + " pieces of each component to stock:\n");
 			for(PcbComponent pcb:pcbDatabase){
-				pcb.bookItself(Integer.parseInt(args[0]));
+				((Reservable)pcb).bookItself(Integer.parseInt(args[0]));
 			}
 			
+
 			
 		} catch (FileNotFoundException e){
 			e.printStackTrace();

@@ -2,7 +2,7 @@ package com.practicaljava.lesson4;
 
 import java.util.Scanner;
 
-public class Resistor extends PcbComponent {
+public class Resistor extends PcbComponent implements Reservable{
 
 	private static final int MAX_NUMBER_OF_RESISTOR_IN_CELL = 100;
 	

@@ -2,7 +2,7 @@ package com.practicaljava.lesson4;
 
 import java.util.Scanner;
 
-public class Inductor extends PcbComponent {
+public class Inductor extends PcbComponent implements Reservable {
 	private static final int MAX_NUMBER_OF_INDUCTORS_IN_CELL = 50;
 
 	public int 				inductance;
