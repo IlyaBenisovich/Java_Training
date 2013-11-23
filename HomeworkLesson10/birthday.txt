@@ -1,0 +1,6 @@
+Nov-23,Mary Lou,yakovfain@gmail.com
+Nov-23,John Smith,yakovfain@gmail.com
+Nov-24,Lady Gaga,yakovfain@gmail.com
+Nov-24,Britney Spears,yakovfain@gmail.com
+Nov-25,Sophia Kovalevsky,yakovfain@gmail.com
+Nov-25,Jennifer Lopez,yakovfain@gmail.com
