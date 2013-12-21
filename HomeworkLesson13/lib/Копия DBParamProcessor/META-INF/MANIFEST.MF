@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.practicalJava.lesson13.chapter24.annotation.DBParamPro
+ cessor
+
